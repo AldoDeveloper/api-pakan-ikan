@@ -2,13 +2,12 @@
   "name": "farhan_new",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
-  "main": "index.mjs",
+  "main": "index.js",
   "engines": {
     "node": "14.x"
   },
   "scripts": {
-    "start" : "node index.mjs",
+    "start" : "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "aldoratmawan",
