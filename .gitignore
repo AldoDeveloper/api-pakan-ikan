@@ -1,0 +1,26 @@
+# Direktori Node.js
+node_modules/
+
+# Berkas konfigurasi npm
+package-lock.json
+npm-debug.log
+
+# Direktori yang dapat dihasilkan
+coverage/
+dist/
+build/
+.eslintcache/
+
+# Berkas lingkungan
+.env
+.env.local
+.env.*.local
+
+# Log dan berkas sementara
+*.log
+*.tmp
+*.pid
+*.swp
+
+# Berkas konfigurasi Visual Studio Code
+.vscode/
