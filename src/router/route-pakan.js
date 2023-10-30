@@ -10,13 +10,13 @@ routeApp.route('/pkn-data')
             return res.status(201).json(data)
         })
         .post(async(req, res, next) => {
-            const dateNow = new Date();
+            const dateNow  = new Date();
             const dataBody = {
                 ...req.body,
                 created_at: `${dateNow.toUTCString()}`
             }
-            const setDatePakan = await setData(appFirestore, dataBody, 'pakan-ikan');
 
+            const setDatePakan = await setData(appFirestore, dataBody, 'pakan-ikan');
             if(setDatePakan){
                 return res.status(201).json({
                     ...dataBody,

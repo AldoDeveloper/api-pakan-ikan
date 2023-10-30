@@ -1,9 +1,5 @@
 
-const { 
-    collection, getDocs, 
-    doc, getDoc, query, where, setDoc
-} = require('firebase/firestore');
-
+const {  collection, getDocs, doc, getDoc, query, where, setDoc, deleteDoc } = require('firebase/firestore');
 const { v4 }   = require('uuid')
 const { hash, compare } = require('bcrypt')
 const { sign } = require('jsonwebtoken')
@@ -52,8 +48,8 @@ async function login(appFirestore, data) {
     const user = users.find((val) => val.email === data?.email)
 
     if(user){
-        const { email, password, full_name, email_verified_at } = user;
-        const hasingPassword =  await compare(data?.password, password);
+        const { email, password, full_name, email_verified_at } = user
+        const hasingPassword =  await compare(data?.password, password)
         if(hasingPassword){
             const payload = sign({
                 email,
@@ -102,15 +98,30 @@ async function cekUserWithEmail(userRef, email) {
 async function setData(appFirestore, body, key){
 
     const refData = collection(appFirestore, key);
-    const uuidV4 = v4();
+    const uuidV4  = v4();
     await setDoc(doc(refData, uuidV4), {
         ...body
     });
     return true
 }
 
+async function updateDataFirebase(appFirestore, body, key, docKey){
+    const refData = collection(appFirestore, key);
+    await setDoc(doc(refData, docKey), {
+        ...body
+    });
+    return true
+}
+
+
+async function deleteDocFirebase(appFirestore, keyCollection, keyDocument){
+    const refData  = collection(appFirestore, keyCollection);
+    await deleteDoc(doc(refData, keyDocument));
+    return true;
+}
 
 module.exports = {
     getAllData, getById, 
-    login, register, JWT_SECRET, setData
+    login, register, JWT_SECRET, setData,
+    updateDataFirebase, deleteDocFirebase
 }

@@ -14,7 +14,7 @@ async function protectedAuthJwt(req, res, next) {
         verify(tokenJwt, JWT_SECRET, (err, user) => {
             if (err) {
                 return res.status(403).json({
-                    code: 401,
+                    code: 403,
                     error: true,
                     message: err.message
                 })
